@@ -1,10 +1,10 @@
-// Level 4
+// Level 5
 
 register: while (true) {
     alert("You need to register");
 
     const userLogin = String(prompt("Enter new login"));
-    const userPassword = String(prompt("Enter password"));
+    let userPassword = String(prompt("Enter password"));
 
     login: while (true) {
         let attempts = 3;
@@ -23,6 +23,10 @@ register: while (true) {
             success = false;
         }
 
+        if (success) {
+            break;
+        }
+
         while (!success) {
             --attempts; // Максимум попыток 3, включая изначальную
 
@@ -36,13 +40,27 @@ register: while (true) {
                     success = true;
                     break login;
                 }
+
             } else {
                 if (confirm("Want to create new account?")) {
                     continue register;
-                } else {
+                }
+
+                while (true) {
+                    if (confirm("Want to reset password?")) {
+                        if (prompt("Enter login to reset pasword") !== userLogin) {
+                            if (confirm("User not found. Create new account?")) {
+                                continue register;
+                            }
+
+                            continue;
+                        }
+
+                        userPassword = prompt("Enter new password");
+                    }
+
                     continue login;
                 }
-                
             }
         }
     }
