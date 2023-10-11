@@ -1,12 +1,14 @@
-// 1. Дан непустой массив чисел. Написать алгоритм (не исползьуя встроенные методы), который изменит исходный массив так, чтобы числа в нём шли в обратном порядке
+// 2. Дан массив и переменная с неким значением. Реализовать алгоритм встроенного метода unshift, не используя встроенные методы
 
 console.clear();
 
-const arr = [1, 2, 3, 4, 5, 6];
-const arrReversed = [];
+const arr = [1, 2, 3, 4, 5];
+const element = "string";
 
 for (let i = arr.length - 1; i >= 0; --i) {
-    arrReversed[i] = arr[arr.length - i - 1]
+    arr[i + 1] = arr[i];
 }
 
-console.log(arrReversed);
+arr[0] = element;
+
+console.log(arr);
