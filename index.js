@@ -1,14 +1,29 @@
-// 2. Дан массив и переменная с неким значением. Реализовать алгоритм встроенного метода unshift, не используя встроенные методы
+/*
+3. Дан некий объект и 10 попыток для пользователя, чтобы ввести названия полей этого объекта. Написать алгоритм, который по окончании выведет в консоль 2 массива:
+    + Поля, которые были в объекте
+    + Поля, которые не были в объекте
+*/
 
 console.clear();
 
-const arr = [1, 2, 3, 4, 5];
-const element = "string";
-
-for (let i = arr.length - 1; i >= 0; --i) {
-    arr[i + 1] = arr[i];
+const obj = {
+    field1: "value",
+    username: "Name",
+    id: "1703",
+    year: "1981"
 }
 
-arr[0] = element;
+const arrContained = [];
+const arrNotContained = [];
 
-console.log(arr);
+for (let i = 1; i <= 10; ++i) {
+    let fieldName = prompt("Введите название поля");
+
+    if (fieldName in obj) {
+        arrContained.push(fieldName);
+    } else {
+        arrNotContained.push(fieldName);
+    }
+}
+
+console.log(arrContained, arrNotContained);
