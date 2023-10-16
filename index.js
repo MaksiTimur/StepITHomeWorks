@@ -1,23 +1,23 @@
-/* 2. Дан объект. Бесконечно спрашивать у пользователя ввод строки. Введённая строка является названием поля в объекте. Нужно в консоль выводить true или false
-   в зависимости от того, есть ли в объекте поле с таким названием или нет. Сложность заключается в том, что регистр букв не должен учитываться ни в введёной строке
-   ни в названии поля*/
-   
-const obj = {
-    name: 'Alex',
-    surName: 'Max',
-    AGE: 40
-}
+/* 3. Бесконечно спрашивать у пользователя ввод строки. После каждого ввода строки юзером в консоль печатать противоположную строку, т.е. порядок должен идти в обратном
+   порядке, а так же регистр букв должен быть инвертирован*/
+
+console.clear();
 
 while (true) {
-    let fieldName = prompt("Enter field name");
-    let isFieldExist = false;
+    const stringArr = prompt("Enter any string").split('');
+    const reversedArr = [];
+    
+    for (let i = 0; i < stringArr.length; ++i) {
+        let arrSymbol = stringArr[stringArr.length - i - 1];
 
-    for (const iterator in obj) {
-        if (iterator.toLowerCase() === fieldName.toLowerCase()) { // toLowerCase приводит строку к нижнему регистру
-            isFieldExist = true;
-            break;
+        if (arrSymbol === arrSymbol.toUpperCase()) {
+            arrSymbol = arrSymbol.toLowerCase();
+        } else {
+            arrSymbol = arrSymbol.toUpperCase();
         }
+
+        reversedArr[i] = arrSymbol;
     }
 
-    console.log(isFieldExist);
+    console.log(reversedArr.join(''));
 }
