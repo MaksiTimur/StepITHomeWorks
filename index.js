@@ -1,29 +1,26 @@
-/*
-3. Дан некий объект и 10 попыток для пользователя, чтобы ввести названия полей этого объекта. Написать алгоритм, который по окончании выведет в консоль 2 массива:
-    + Поля, которые были в объекте
-    + Поля, которые не были в объекте
-*/
+/*1. Даны два массива. Один массив содержит в себе названия глав, а второй массив соответсвующие номера страниц. Количество элементов в обоих массивах одинаково.
+   Нужно вывести в консоль попарно в виде оглавления все названия и соответсвующие им страницы. Минимальная длина всей страницы 20 символов. Если сумма длин
+   номера страницы и названия главы превышает 20 символов, то между ними должна быть 1 точка гарантированно*/
 
 console.clear();
 
-const obj = {
-    field1: "value",
-    username: "Name",
-    id: "1703",
-    year: "1981"
-}
+{
+    const titles = ['Заголовок 1', 'Самый длинный заголовок во всей книжке', 'Заголовок 2'];
+    const pages = [10, 20, 123456789012345];
 
-const arrContained = [];
-const arrNotContained = [];
+    const maxLength = 20;
 
-for (let i = 1; i <= 10; ++i) {
-    let fieldName = prompt("Введите название поля");
+    for (let i = 0; i < titles.length; ++i) {
 
-    if (fieldName in obj) {
-        arrContained.push(fieldName);
-    } else {
-        arrNotContained.push(fieldName);
+        let result;
+        let dotsCount = maxLength - String(pages[i]).length;
+
+        if (titles[i].length >= dotsCount) {
+            result = titles[i].concat('.', String(pages[i]))
+        } else {
+            result = titles[i].padEnd(dotsCount, '.').concat(String(pages[i]));
+        }
+
+        console.log(result);
     }
 }
-
-console.log(arrContained, arrNotContained);
