@@ -1,23 +1,13 @@
-/* 3. Бесконечно спрашивать у пользователя ввод строки. После каждого ввода строки юзером в консоль печатать противоположную строку, т.е. порядок должен идти в обратном
-   порядке, а так же регистр букв должен быть инвертирован*/
+/* 1. Дан массив. Написать программу, которая при каждом запуске будет возвращать случайное значение из этого массива. Если
+  массив пустой, то выдать об этом сообщение*/
 
 console.clear();
 
-while (true) {
-    const stringArr = prompt("Enter any string").split('');
-    const reversedArr = [];
-    
-    for (let i = 0; i < stringArr.length; ++i) {
-        let arrSymbol = stringArr[stringArr.length - i - 1];
+const arr = [0, 1, 2, 3, 4, 5];
 
-        if (arrSymbol === arrSymbol.toUpperCase()) {
-            arrSymbol = arrSymbol.toLowerCase();
-        } else {
-            arrSymbol = arrSymbol.toUpperCase();
-        }
-
-        reversedArr[i] = arrSymbol;
-    }
-
-    console.log(reversedArr.join(''));
+if (arr.length === 0) {
+    console.log("Массив пустой!");
+} else {
+    const randomIndex = Math.round(Math.random() * (arr.length - 1));
+    console.log(arr[randomIndex]);
 }
