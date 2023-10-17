@@ -2,16 +2,19 @@
 
 console.clear();
 
-const number = Number(prompt("Enter the number"));
+function fibonacci(number) {
 
-let num1 = 0;
-let num2 = 1;
-let sum;
+    let num1 = 0;
+    let num2 = 1;
+    let sum;
 
-for (let i = 2; i < number; i++) { // Первые два числа уже напечатаны
-    sum = num1 + num2;
-    num1 = num2;
-    num2 = sum;
+    for (let i = 2; i < number; i++) { // Первые два числа уже напечатаны
+        sum = num1 + num2;
+        num1 = num2;
+        num2 = sum;
+    }
+
+    return num2;
 }
 
-console.log(num2);
+console.log(fibonacci(Number(prompt("Enter the number"))));
