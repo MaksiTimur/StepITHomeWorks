@@ -1,11 +1,19 @@
-/* 1. Реализовать setInterval с помощью setTimeout */
+/* 2. Дан массив. Написать функцию, которая будет каждую секунду выводить в консоль элементы массива, пока они не закончатся
+   Функция должна принимать на вход 1 аргумент: массив */
 
 console.clear();
 
-function customInterval(ms, message) {
-  console.log(message);
+let i = 0;
 
-  setTimeout(customInterval, ms, ms, message);
+function parseArray(array) {
+  if (i >= array.length) {
+    i = 0;
+    clearInterval(interval);
+    return;
+  }
+
+  console.log(array[i]);
+  ++i;
 }
 
-customInterval(1000, 'Hi');
+const interval = setInterval(parseArray, 1000, [0, 1, 2, 3, 4, 5]);
