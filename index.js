@@ -1,18 +1,25 @@
-/* 3. Написать функцию таймера обратного отсчёта. Функция должна принимать 2 аргумента:
-	+ Временной интервал в секундах между выводом чисел
-	+ Число, с которого начнётся обратный отчёт. Число будет передано неотрицательное и целое
-   Выводить нужно начиная с числа включительно и до 0 включительно
-   По достижении 0 функция завершает свою работу */
+/* 4. Написать функцию будильник. Функция должна принимать 1 аргумент:
+	+ Время - строка формата HH:mm:ss
+   Если хоть одна из частей времени не является формата - 2 цифры, то выводить ошибку и ничего не делать.
+   При наступлении указанного времени выводить адекв */
 
 console.clear();
 
-function reverseTimer(delayInSecs, number) {
-  for (let i = number; i >= 0; --i) {
+let interval;
 
-    setTimeout(function() {
-      console.log(i);
-    }, (number - i) * (delayInSecs * 1000));
+function clock(date) {
+  if (date.length !== 8) return("Incorrect time format: hh:mm:ss");
+
+  interval = setInterval(checkTime, 1000, date);
+}
+
+function checkTime(date) {
+  const time = Date().split(' ')[4];
+
+  if (date === time) {
+    clearInterval(interval);
+    console.log("Будильник!");
   }
 }
 
-reverseTimer(1, 5);
+clock("14:54:45");
