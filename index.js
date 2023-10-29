@@ -55,11 +55,11 @@ function MyArray(...args) {
 
         const length = this.elements.length;
 
-        for (let i = this.elements.length - 1; i >= 0; --i) {
+        for (let i = this.elements.length - 1; i >= 0; --i) { // Сдвиг сразу на нужное количество элементов
             this.elements[i + args.length] = this.elements[i];
         }
 
-        for (let i = 0; i < args.length; ++i) {
+        for (let i = 0; i < args.length; ++i) { // Заполнение свободных элементов в начале массива
             this.elements[i] = args[i];
             ++this.elements.length;
         }
