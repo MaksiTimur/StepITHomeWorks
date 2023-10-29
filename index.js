@@ -1,74 +1,62 @@
-/* В функции myMath добавить:
-  1. Проверку на то что переданная операция - это функция. Напрмер Math есть константы типа Math.PI и если я щас передам 'PI'
-   как `operation`, то он его найдёт и выведет ошибку, а надо чтобы просто вернул значение Math.PI
-  2. Если передана не существушая операция (ни в Math ни в switch), то вывести ошибку, что такой операции нет
-  3. Написать логику для multiply, division и subtract. Начальные значения 1, 1 и 0 соответсвенно */
+/* В функцию конструктор MyArray добавить методы shift и unshift */
 
 console.clear();
 
-console.clear();
-
-function myMath(operation, ...args) {
-    const isOperationAlreadyExist = operation in Math;
-    const mathOperation = Math[operation];
-
-    if (isOperationAlreadyExist) {
-        if (typeof mathOperation === Function) {
-            return mathOperation(...args);
-        } else {
-            return mathOperation;
-        }
+function MyArray(...args) {
+    this.elements = {
+        length: 0
     }
 
-    switch(operation) {
-        case 'sum': {
-            let sum = 0;
-
-            for (let i = 0; i < args.length; ++i) {
-                sum += args[i];
-            }
-
-            return sum;
+    this.push = function(...args) {
+        for (const arg of args) {
+            const index = this.elements.length;
+            this.elements[index] = arg;
+            ++this.elements.length;
         }
 
-        case 'subtract': {
-            let subtract = 0;
-
-            for (let i = 0; i < args.length; ++i) {
-                subtract -= args[i];
-            }
-
-            return subtract;
-        }
-
-        case 'multiply': {
-            let product = 1;
-
-            for (let i = 0; i < args.length; ++i) {
-                product *= args[i];
-            }
-
-            return product;
-        }
-
-        case 'division': {
-            let product = args[0];
-
-            for (let i = 1; i < args.length; ++i) {
-                product /= args[i];
-            }
-
-            return product;
-        }
-
-
-        default: {
-            return "Invalid operation";
-        }
+        return this.elements.length;
     }
+
+    this.pop = function() {
+        const length = this.elements.length;
+
+        if (length === 0) return;
+
+        const returnValue = this.elements[length - 1];
+        delete this.elements[length - 1];
+        --this.elements.length;
+
+        return returnValue;
+    }
+
+    this.shift = function() {
+        if (this.elements.length === 0) return;
+
+        const returnValue = this.elements[0];
+        delete this.elements[0];
+        --this.elements.length;
+
+        console.log(this.elements);
+
+        const keys = Object.keys(this.elements);
+        for (const iterator of keys) {
+
+            if (Number(isNaN(Number[iterator]))) {
+                this.elements[Number(iterator) - 1] = this.elements[iterator];
+
+                if (Number(iterator) === this.elements.length) {
+                    delete this.elements[iterator];
+                }
+            }
+        }
+
+        return returnValue;
+    }
+
+    this.push(...args);
 }
 
-console.log(myMath('subtract', 1, 2, 3, 4, 5));
-console.log(myMath('multiply', 2, 4, 2));
-console.log(myMath('division', 4, 2, 2));
-console.log(myMath('PI', -1, 0, 1));
+const arr = new MyArray(5, 50, 500);
+console.log(arr.elements);
+
+console.log(arr.shift(), arr.elements);
