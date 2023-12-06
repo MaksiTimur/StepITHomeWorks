@@ -1,77 +1,68 @@
 console.clear();
 
-const button = document.querySelector('button');
+const buttons = document.querySelectorAll('button');
+const table = document.querySelector('table');
 
-let userNumber;
+let lockRows = false;
+let lockCols = false;
 
-do {
-    userNumber = +prompt('Введите число от 1 до 10');
-} while (isNaN(userNumber) || userNumber > 10 || userNumber < 1);
+buttons[0].addEventListener('click', addRow);
+buttons[1].addEventListener('click', addCol);
+buttons[2].addEventListener('click', removeRow);
+buttons[3].addEventListener('click', removeCol);
 
-button.addEventListener('click', (e) => {
-    const number = 1;
-    console.log(number);
+function addRow() {
+    const rows = document.querySelectorAll('table tr');
+    console.log(rows);
+    const lastRow = rows[rows.length - 1];
+    const lastRowClone = lastRow.cloneNode(true);
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+    table.append(lastRowClone);
+}
 
-button.addEventListener('click', (e) => {
-    const number = 2;
-    console.log(number);
+function addCol() {
+    const cols = document.querySelectorAll('table tr');
+    const newCell = document.createElement('td');
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+    cols.forEach(col => {
+        col.append(newCell.cloneNode());
+    });
+}
 
-button.addEventListener('click', (e) => {
-    const number = 3;
-    console.log(number);
+function removeRow() {
+    if (lockRows) return;
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+    const rows = document.querySelectorAll('table tr');
+    const lastRow = rows[rows.length - 1];
 
-button.addEventListener('click', (e) => {
-    const number = 4;
-    console.log(number);
+    lastRow.remove();
+    checkRowsAndCols();
+}
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+function removeCol() {
+    if (lockCols) return;
 
-button.addEventListener('click', (e) => {
-    const number = 5;
-    console.log(number);
+    const cols = document.querySelectorAll('tr td:last-child');
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+    cols.forEach(col => {
+        col.remove();
+    });
 
-button.addEventListener('click', (e) => {
-    const number = 6;
-    console.log(number);
+    checkRowsAndCols();
+}
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+function checkRowsAndCols() {
+    if (!lockCols) {
+        const cols = document.querySelectorAll('tr:first-of-type td');
 
-button.addEventListener('click', (e) => {
-    const number = 7;
-    console.log(number);
+        if (cols.length === 1) lockCols = true;
+    }
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
+    if (!lockRows) {
+        const rows = document.querySelectorAll('table tr');
 
-button.addEventListener('click', (e) => {
-    const number = 8;
-    console.log(number);
+        if (rows.length === 1) lockRows = true;
+    }
 
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 9;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', () => {
-    const number = 10;
-    console.log(number);
-});
+    console.log(lockCols, lockRows);
+}
