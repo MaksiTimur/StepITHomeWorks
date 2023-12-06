@@ -1,32 +1,31 @@
-/* Написать программу, которая на вход принимает два натуральных числа `(n, m)` и создаёт в HTML таблицу с `n` строками и
-`m` ячейками в каждой строке */
+// hover галереи без CSS
 
 console.clear();
-
-function generateTable(line, column) {
-    const table = document.createElement('table');
-    const lines = [];
-
-    for (let i = 0; i < line; ++i) {  
-        lines.push(document.createElement('tr'));
-    }
-
-    for (const tableLine of lines) {
-        table.appendChild(tableLine);
-    }
-
-    for (let i = 0; i < lines.length; ++i) {
-        for (let j = 0; j < column; j++) {
-            lines[i].appendChild(document.createElement('td'));
-        }
-    }
-
-    document.body.append(table);
-}
-
-// ##################
-
-generateTable(5, 3);
-generateTable(3, 5);
-generateTable(1, 10);
-generateTable(6, 6);
+ 
+const preview = document.querySelector('.preview');
+const mainPhoto = document.querySelector('#photo');
+ 
+const previews = document.querySelectorAll('[id^="preview-"]');
+ 
+previews.forEach(previewElement => {
+    previewElement.addEventListener('mouseenter', (event) => {
+        const target = event.target;
+       
+        target.style.cursor = 'pointer';
+        target.style.outline = '2px solid black';
+    });
+ 
+    previewElement.addEventListener('mouseleave', (event) => {
+        const target = event.target;
+       
+        target.style.outline = 'none';
+    });
+});
+ 
+preview.addEventListener('click', function (event) {
+    const target = event.target;
+ 
+    if (target.tagName !== 'IMG') return;
+ 
+    mainPhoto.src = target.src;
+});
