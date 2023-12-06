@@ -1,31 +1,19 @@
-// hover галереи без CSS
-
 console.clear();
- 
-const preview = document.querySelector('.preview');
-const mainPhoto = document.querySelector('#photo');
- 
-const previews = document.querySelectorAll('[id^="preview-"]');
- 
-previews.forEach(previewElement => {
-    previewElement.addEventListener('mouseenter', (event) => {
-        const target = event.target;
-       
-        target.style.cursor = 'pointer';
-        target.style.outline = '2px solid black';
+
+const links = document.querySelectorAll('a');
+
+links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        link.style.color = generateColor();
     });
- 
-    previewElement.addEventListener('mouseleave', (event) => {
-        const target = event.target;
-       
-        target.style.outline = 'none';
+
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
     });
 });
- 
-preview.addEventListener('click', function (event) {
-    const target = event.target;
- 
-    if (target.tagName !== 'IMG') return;
- 
-    mainPhoto.src = target.src;
-});
+
+function generateColor() {
+    const color = Math.floor(Math.random() * 16777216).toString(16);
+    
+    return `#${color}`;
+}
