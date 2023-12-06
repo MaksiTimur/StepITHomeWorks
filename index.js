@@ -1,19 +1,77 @@
 console.clear();
 
-const links = document.querySelectorAll('a');
+const button = document.querySelector('button');
 
-links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        link.style.color = generateColor();
-    });
+let userNumber;
 
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-    });
+do {
+    userNumber = +prompt('Введите число от 1 до 10');
+} while (isNaN(userNumber) || userNumber > 10 || userNumber < 1);
+
+button.addEventListener('click', (e) => {
+    const number = 1;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
 });
 
-function generateColor() {
-    const color = Math.floor(Math.random() * 16777216).toString(16);
-    
-    return `#${color}`;
-}
+button.addEventListener('click', (e) => {
+    const number = 2;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 3;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 4;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 5;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 6;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 7;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 8;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', (e) => {
+    const number = 9;
+    console.log(number);
+
+    if (number === userNumber) e.stopImmediatePropagation();
+});
+
+button.addEventListener('click', () => {
+    const number = 10;
+    console.log(number);
+});
