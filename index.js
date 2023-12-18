@@ -1,12 +1,15 @@
 console.clear();
 
-// 4. Используя regexp и replace, заменить в строке все цифры на знак D
+// 6. Подсчёт совпадений
 
-const regexp = /\d+/g;
-const string = 'test123 45 lz1g75f'
+let count = 0;
+const regexp = /\w+/g;
+const string = 'test123 45 lz1g75f 21a a azza a'
 
-function replaceByRegExp(str, regexp) {
-    return str.replace(regexp, 'N');
+function countMatches(str, regexp) {
+    while (regexp.test(str)) count++;
+
+    console.log(count);
 }
 
-console.log(replaceByRegExp(string, regexp));
+countMatches(string, regexp);
