@@ -1,77 +1,12 @@
 console.clear();
 
-const button = document.querySelector('button');
+// 4. Используя regexp и replace, заменить в строке все цифры на знак D
 
-let userNumber;
+const regexp = /\d/g;
+const string = 'test123 45 lz1g75f'
 
-do {
-    userNumber = +prompt('Введите число от 1 до 10');
-} while (isNaN(userNumber) || userNumber > 10 || userNumber < 1);
+function replaceByRegExp(str, regexp) {
+    return str.replace(regexp, 'D');
+}
 
-button.addEventListener('click', (e) => {
-    const number = 1;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 2;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 3;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 4;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 5;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 6;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 7;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 8;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', (e) => {
-    const number = 9;
-    console.log(number);
-
-    if (number === userNumber) e.stopImmediatePropagation();
-});
-
-button.addEventListener('click', () => {
-    const number = 10;
-    console.log(number);
-});
+console.log(replaceByRegExp(string, regexp));
