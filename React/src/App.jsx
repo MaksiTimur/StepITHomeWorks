@@ -1,10 +1,12 @@
 import './App.css';
-import Timer from './components/Timer/Timer';
+import Modal from './components/Modal/Modal';
 
 const App = () => {
   return (
-    <Timer />
-  )
+    <div className="clipping-container">
+      <Modal />
+    </div>
+  );
 }
 
 export default App;
