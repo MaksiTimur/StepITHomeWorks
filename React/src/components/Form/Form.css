@@ -1,0 +1,11 @@
+input[type="checkbox"] {
+    margin: 6px;
+}
+
+.valid {
+    background: green;
+}
+
+.invalid {
+    background: red;
+}
